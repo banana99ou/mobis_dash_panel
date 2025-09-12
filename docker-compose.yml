@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: mobis-visualization-app
+    ports:
+      - "8050:8050"
+    volumes:
+      - .:/app
+      - /mobis_dash_panel/data/:/app/data/
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped 

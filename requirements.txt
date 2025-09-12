@@ -1,0 +1,28 @@
+# IMU Data Manager - Requirements
+# 웹 기반 IMU 데이터 시각화 및 관리 시스템
+
+# 웹 프레임워크 및 시각화
+dash>=2.16.0
+plotly>=5.17.0
+dash-bootstrap-components>=1.5.0
+
+# 데이터 처리 및 분석
+pandas>=2.2.0
+numpy>=2.0.0
+
+# 데이터베이스
+# sqlite3은 Python 내장 모듈이므로 별도 설치 불필요
+
+# 파일 모니터링
+watchdog>=3.0.0
+
+# 웹 서버
+flask>=3.0.0
+gunicorn>=21.2.0
+
+# 유틸리티
+python-dateutil>=2.8.2
+
+# 개발 도구 (선택사항)
+jupyter>=1.0.0
+ipython>=8.18.0 

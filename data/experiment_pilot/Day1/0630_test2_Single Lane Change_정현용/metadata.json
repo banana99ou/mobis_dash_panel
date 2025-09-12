@@ -1,0 +1,21 @@
+{
+  "experiment": {
+    "date": "2024-06-30",
+    "scenario": "Single Lane Change",
+    "test_name": "Test2"
+  },
+  "sensors": [
+    {
+      "id": "IMU_01",
+      "position": "조수석후방",
+      "file": "IMU_01.csv",
+      "subject": "정현용"
+    },
+    {
+      "id": "IMU_02",
+      "position": "콘솔",
+      "file": "IMU_02.csv",
+      "subject": "정현용"
+    }
+  ]
+}
