@@ -103,9 +103,7 @@ class IMUDatabase:
         current_files = set()
         for root, dirs, files in os.walk(data_root):
             for file in files:
-                print(f'file: {file}')
                 if file == 'metadata.json':
-                    print("json found")
                     metadata_path = os.path.join(root, file)
                     # Normalize path to NFC for cross-platform compatibility
                     normalized_path = unicodedata.normalize('NFC', metadata_path)
@@ -119,7 +117,6 @@ class IMUDatabase:
         
         # 3. 삭제된 파일들 확인
         deleted_files = db_files - current_files
-        print(f'db_files: {db_files}, current_files: {current_files}, deleted_files: {deleted_files}')
         if deleted_files:
             print(f"삭제된 파일들 감지: {len(deleted_files)}개")
             for deleted_file in deleted_files:
