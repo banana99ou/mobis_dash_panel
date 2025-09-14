@@ -6,6 +6,7 @@ from database import db, IMUDatabase
 import utils
 import subprocess
 import sys
+from flask import Flask, jsonify, request
 
 db.scan_and_index_data()
 
@@ -24,6 +25,93 @@ def start_data_watcher():
 start_data_watcher()
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
+
+# Flask API routes
+@app.server.route('/api/search/tests', methods=['GET'])
+def api_search_tests():
+    """테스트 검색 API"""
+    try:
+        # 쿼리 파라미터 추출
+        subject = request.args.get('subject')
+        sensor_id = request.args.get('sensor_id')
+        scenario = request.args.get('scenario')
+        date = request.args.get('date')
+        
+        # 데이터베이스에서 검색
+        results = db.search_tests(
+            subject=subject,
+            sensor_id=sensor_id,
+            scenario=scenario,
+            date=date
+        )
+        
+        return jsonify({
+            'status': 'success',
+            'count': len(results),
+            'data': results
+        })
+    
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
+@app.server.route('/api/tests/<int:test_id>/paths', methods=['GET'])
+def api_get_test_paths(test_id):
+    """테스트 파일 경로 조회 API"""
+    try:
+        result = db.get_test_paths(test_id)
+        
+        if result is None:
+            return jsonify({
+                'status': 'error',
+                'message': f'Test with ID {test_id} not found'
+            }), 404
+        
+        return jsonify({
+            'status': 'success',
+            'data': result
+        })
+    
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
+@app.server.route('/api/tests/<int:test_id>/sensors', methods=['GET'])
+def api_get_test_sensors(test_id):
+    """테스트 센서 정보 조회 API"""
+    try:
+        sensors = db.get_sensors_by_test(test_id)
+        
+        if not sensors:
+            return jsonify({
+                'status': 'error',
+                'message': f'No sensors found for test ID {test_id}'
+            }), 404
+        
+        return jsonify({
+            'status': 'success',
+            'count': len(sensors),
+            'data': sensors
+        })
+    
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
+@app.server.route('/api/health', methods=['GET'])
+def api_health():
+    """API 상태 확인"""
+    return jsonify({
+        'status': 'success',
+        'message': 'API is running',
+        'version': '1.0.0'
+    })
 
 # 비밀번호 설정 (실제 운영환경에서는 환경변수나 설정 파일에서 관리하는 것을 권장)
 PASSWORD = "mobis1234"

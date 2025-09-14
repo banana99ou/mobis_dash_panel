@@ -300,6 +300,94 @@ class IMUDatabase:
                 return dict(zip(columns, result))
             return None
 
+    def search_tests(self, subject: str = None, sensor_id: str = None, 
+                    scenario: str = None, date: str = None) -> List[Dict]:
+        """테스트 검색 (OR 조건으로 필터링)"""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            
+            # 기본 쿼리
+            query = '''
+                SELECT DISTINCT t.id, t.test_name, t.subject, t.imu_count, t.created_at,
+                       e.date, e.scenario
+                FROM tests t
+                JOIN experiments e ON t.experiment_id = e.id
+                LEFT JOIN sensors s ON t.id = s.test_id
+                WHERE 1=1
+            '''
+            params = []
+            
+            # 조건별 WHERE 절 추가 (OR 조건)
+            conditions = []
+            if subject:
+                conditions.append('t.subject LIKE ?')
+                params.append(f'%{subject}%')
+            if sensor_id:
+                conditions.append('s.sensor_id LIKE ?')
+                params.append(f'%{sensor_id}%')
+            if scenario:
+                conditions.append('e.scenario LIKE ?')
+                params.append(f'%{scenario}%')
+            if date:
+                conditions.append('e.date = ?')
+                params.append(date)
+            
+            if conditions:
+                query += ' AND (' + ' OR '.join(conditions) + ')'
+            
+            query += ' ORDER BY e.date DESC, t.test_name'
+            
+            cursor.execute(query, params)
+            columns = [desc[0] for desc in cursor.description]
+            return [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+    def get_test_paths(self, test_id: int) -> Optional[Dict]:
+        """테스트의 모든 파일 경로 조회"""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            
+            # 테스트 기본 정보 조회
+            cursor.execute('''
+                SELECT t.id, t.test_name, t.file_path, e.date, e.scenario
+                FROM tests t
+                JOIN experiments e ON t.experiment_id = e.id
+                WHERE t.id = ?
+            ''', (test_id,))
+            test_result = cursor.fetchone()
+            
+            if not test_result:
+                return None
+            
+            # 센서 파일들 조회
+            cursor.execute('''
+                SELECT sensor_id, position, file_path
+                FROM sensors
+                WHERE test_id = ?
+                ORDER BY sensor_id
+            ''', (test_id,))
+            sensor_results = cursor.fetchall()
+            
+            # 메타데이터 파일 경로에서 실험 폴더 경로 추출
+            metadata_path = test_result[2]
+            experiment_path = os.path.dirname(metadata_path)
+            
+            return {
+                'test_id': test_result[0],
+                'test_name': test_result[1],
+                'experiment_date': test_result[3],
+                'scenario': test_result[4],
+                'experiment_path': experiment_path,
+                'metadata_path': metadata_path,
+                'sensor_files': [
+                    {
+                        'sensor_id': row[0],
+                        'position': row[1],
+                        'file_path': row[2]
+                    }
+                    for row in sensor_results
+                ]
+            }
+
 # 전역 데이터베이스 인스턴스
 DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), 'db', 'imu_data.db'))
 db = IMUDatabase(db_path=DB_PATH)
