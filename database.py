@@ -1,6 +1,7 @@
 import sqlite3
 import json
 import os
+import unicodedata
 from typing import List, Dict, Optional
 
 class IMUDatabase:
@@ -102,18 +103,23 @@ class IMUDatabase:
         current_files = set()
         for root, dirs, files in os.walk(data_root):
             for file in files:
+                print(f'file: {file}')
                 if file == 'metadata.json':
+                    print("json found")
                     metadata_path = os.path.join(root, file)
-                    current_files.add(metadata_path)
+                    # Normalize path to NFC for cross-platform compatibility
+                    normalized_path = unicodedata.normalize('NFC', metadata_path)
+                    current_files.add(normalized_path)
         
         # 2. DB에서 현재 저장된 모든 metadata.json 파일 경로 수집
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute('SELECT file_path FROM tests')
-            db_files = {row[0] for row in cursor.fetchall()}
+            db_files = {unicodedata.normalize('NFC', row[0]) for row in cursor.fetchall()}
         
         # 3. 삭제된 파일들 확인
         deleted_files = db_files - current_files
+        print(f'db_files: {db_files}, current_files: {current_files}, deleted_files: {deleted_files}')
         if deleted_files:
             print(f"삭제된 파일들 감지: {len(deleted_files)}개")
             for deleted_file in deleted_files:
