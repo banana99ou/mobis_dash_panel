@@ -1,15 +1,3 @@
-{
-  "experiment": {
-    "date": "2024-06-30",
-    "scenario": "Single Lane Change",
-    "test_name": "Test1"
-  },
-  "sensors": [
-    {
-      "id": "IMU_01",
-      "position": "콘솔",
-      "file": "IMU_01.csv",
-      "subject": "최지웅"
-    }
-  ]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:089a92c721866bbc4906c6653f444fc16f16b782d7cf03cfeb01cbffc82317de
+size 254
