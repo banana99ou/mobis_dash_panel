@@ -1,0 +1,16 @@
+[2025-09-20 20:04:12] Creating backup at data_backup
+[2025-09-20 20:04:13] Backup created successfully
+[2025-09-20 20:04:13] Parsing current directory structure...
+[2025-09-20 20:04:13] Parsed: 0630_test2_Single Lane Change_정현용 -> {'date': '0630', 'test_number': 2, 'scenario': 'Single Lane Change', 'subject': '정현용'}
+[2025-09-20 20:04:13] Parsed: 0630_test1_Single Lane Change_최지웅 -> {'date': '0630', 'test_number': 1, 'scenario': 'Single Lane Change', 'subject': '최지웅'}
+[2025-09-20 20:04:13] Generating migration plan...
+[2025-09-20 20:04:13] Executing migration...
+[2025-09-20 20:04:13] Created directory: data/motion_sickness/2024-06-30_single_lane_change/test_002_정현용
+[2025-09-20 20:04:13] Copied: data/experiment_pilot/Day1/0630_test2_Single Lane Change_정현용/IMU_01.csv -> data/motion_sickness/2024-06-30_single_lane_change/test_002_정현용/imu_passenger_rear_001.csv
+[2025-09-20 20:04:13] Copied: data/experiment_pilot/Day1/0630_test2_Single Lane Change_정현용/IMU_02.csv -> data/motion_sickness/2024-06-30_single_lane_change/test_002_정현용/imu_console_002.csv
+[2025-09-20 20:04:13] Created metadata: data/motion_sickness/2024-06-30_single_lane_change/test_002_정현용/metadata.json
+[2025-09-20 20:04:13] Created directory: data/motion_sickness/2024-06-30_single_lane_change/test_001_최지웅
+[2025-09-20 20:04:13] Copied: data/experiment_pilot/Day1/0630_test1_Single Lane Change_최지웅/IMU_01.csv -> data/motion_sickness/2024-06-30_single_lane_change/test_001_최지웅/imu_console_001.csv
+[2025-09-20 20:04:13] Created metadata: data/motion_sickness/2024-06-30_single_lane_change/test_001_최지웅/metadata.json
+[2025-09-20 20:04:13] Validating migration...
+[2025-09-20 20:04:13] Migration validation successful!

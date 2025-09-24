@@ -1,0 +1,192 @@
+[2025-09-24 19:19:53] Creating backup of existing motion_sickness folder at data_backup/motion_sickness
+[2025-09-24 19:19:53] Backup created successfully
+[2025-09-24 19:19:53] Scanning ingest folder for legacy format directories...
+[2025-09-24 19:19:53] Skipping recording format directory (will be handled later): recording_20250804_113600_ND
+[2025-09-24 19:19:53] Skipping recording format directory (will be handled later): recording_20250805_092426_154
+[2025-09-24 19:19:53] Found legacy migration candidate: 0813 Test04 sub03 강민구 S&G (10분) (4 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0826 Test02 sub08 장성준 SLC(10m 중도중단) (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0818 Test02 sub05 주성우 SLC (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0813 Test03 sub02 이서윤 LW (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0819 Test03 sub06 조영찬 S&G (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0812 Test02 sub03 강민구 S&G (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0812 Test01 sub02 이서윤 S&G (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0811 Test01 sub02 이서윤 SLC (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0811 Test03 sub01 이경주 SLC (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0820 Test02 sub05 주성우 LW (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0826 Test04 sub09 정예린 SLC (3 CSV files)
+[2025-09-24 19:19:53] Skipping recording format directory (will be handled later): recording_20250805_151119_821
+[2025-09-24 19:19:53] Found legacy migration candidate: 0825 Test02 sub08 장성준 LW (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0820 Test01 sub04 임종찬 LW (3 CSV files)
+[2025-09-24 19:19:53] Skipping recording format directory (will be handled later): recording_20250805_135317_890
+[2025-09-24 19:19:53] Found legacy migration candidate: 0827 Test02 sub08 장성준 S&G (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0825 Test01 sub07 조은영 LW (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0820 Test03 sub06 조영찬 LW (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0827 Test03 sub09 정예린 S&G (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0812 Test03 sub01 이경주 S&G (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0819 Test02 sub05 주성우 S&G (3 CSV files)
+[2025-09-24 19:19:53] Skipping recording format directory (will be handled later): recording_20250805_104117_893
+[2025-09-24 19:19:53] Skipping recording format directory (will be handled later): recording_20250804_154119_185
+[2025-09-24 19:19:53] Found legacy migration candidate: 0825 Test03 sub09 정예린 LW (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0818 Test01 sub04 임종찬 SLC (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0813 Test01 sub03 강민구 LW (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0811 Test02 sub03 강민구 SLC (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0826 Test01 sub07 조운영 SLC (3 CSV files)
+[2025-09-24 19:19:53] Skipping recording format directory (will be handled later): recording_20250804_143715_423
+[2025-09-24 19:19:53] Found legacy migration candidate: 0826 Test02 sub08 장성준 SLC(30m) (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0813 Test02 sub01 이경주 LW (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0818 Test03 sub06 조영찬 SLC (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0819 Test01 sub04 임종찬 S&G (3 CSV files)
+[2025-09-24 19:19:53] Found legacy migration candidate: 0827 Test01 sub07 조은영 S&G (3 CSV files)
+[2025-09-24 19:19:53] Generating migration plan...
+[2025-09-24 19:20:43] Executing migration...
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-13_stop_and_go/test_004_sub03_강민구
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz.csv -> imu_headrest_004.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-13_stop_and_go/test_004_sub03_강민구/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-26_single_lane_change/test_002_sub08_장성준
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-26_single_lane_change/test_002_sub08_장성준/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-18_single_lane_change/test_002_sub05_주성우
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-18_single_lane_change/test_002_sub05_주성우/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-13_long_wave/test_003_sub02_Unknown
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-13_long_wave/test_003_sub02_Unknown/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-19_stop_and_go/test_003_sub06_조영찬
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-19_stop_and_go/test_003_sub06_조영찬/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-12_stop_and_go/test_002_sub03_강민구
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-12_stop_and_go/test_002_sub03_강민구/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-12_stop_and_go/test_001_sub02_이서윤
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-12_stop_and_go/test_001_sub02_이서윤/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-11_single_lane_change/test_001_sub02_이서윤
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-11_single_lane_change/test_001_sub02_이서윤/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-11_single_lane_change/test_003_sub01_이경주
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-11_single_lane_change/test_003_sub01_이경주/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-20_long_wave/test_002_sub05_Unknown
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-20_long_wave/test_002_sub05_Unknown/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-26_single_lane_change/test_004_sub09_정예린
+[2025-09-24 19:20:43] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:43] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:43] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:43] Created metadata: data/motion_sickness/2024-08-26_single_lane_change/test_004_sub09_정예린/metadata.json
+[2025-09-24 19:20:43] Created directory: data/motion_sickness/2024-08-25_long_wave/test_002_sub08_Unknown
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-25_long_wave/test_002_sub08_Unknown/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-20_long_wave/test_001_sub04_Unknown
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-20_long_wave/test_001_sub04_Unknown/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-27_stop_and_go/test_002_sub08_장성준
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-27_stop_and_go/test_002_sub08_장성준/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-25_long_wave/test_001_sub07_Unknown
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-25_long_wave/test_001_sub07_Unknown/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-20_long_wave/test_003_sub06_Unknown
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-20_long_wave/test_003_sub06_Unknown/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-27_stop_and_go/test_003_sub09_정예린
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-27_stop_and_go/test_003_sub09_정예린/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-12_stop_and_go/test_003_sub01_이경주
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-12_stop_and_go/test_003_sub01_이경주/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-19_stop_and_go/test_002_sub05_주성우
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-19_stop_and_go/test_002_sub05_주성우/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-25_long_wave/test_003_sub09_Unknown
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-25_long_wave/test_003_sub09_Unknown/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-18_single_lane_change/test_001_sub04_임종찬
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-18_single_lane_change/test_001_sub04_임종찬/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-13_long_wave/test_001_sub03_Unknown
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-13_long_wave/test_001_sub03_Unknown/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-11_single_lane_change/test_002_sub03_강민구
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-11_single_lane_change/test_002_sub03_강민구/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-26_single_lane_change/test_001_sub07_조운영
+[2025-09-24 19:20:44] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:44] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:44] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:44] Created metadata: data/motion_sickness/2024-08-26_single_lane_change/test_001_sub07_조운영/metadata.json
+[2025-09-24 19:20:44] Created directory: data/motion_sickness/2024-08-26_single_lane_change/test_002_sub08_장성준
+[2025-09-24 19:20:45] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:45] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:45] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:45] Created metadata: data/motion_sickness/2024-08-26_single_lane_change/test_002_sub08_장성준/metadata.json
+[2025-09-24 19:20:45] Created directory: data/motion_sickness/2024-08-13_long_wave/test_002_sub01_Unknown
+[2025-09-24 19:20:45] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_001.csv
+[2025-09-24 19:20:45] Copied: realsense_resampled_100Hz_LH_Rot.csv -> imu_realsense_002.csv
+[2025-09-24 19:20:45] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:45] Created metadata: data/motion_sickness/2024-08-13_long_wave/test_002_sub01_Unknown/metadata.json
+[2025-09-24 19:20:45] Created directory: data/motion_sickness/2024-08-18_single_lane_change/test_003_sub06_조영찬
+[2025-09-24 19:20:45] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:45] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:45] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:45] Created metadata: data/motion_sickness/2024-08-18_single_lane_change/test_003_sub06_조영찬/metadata.json
+[2025-09-24 19:20:45] Created directory: data/motion_sickness/2024-08-19_stop_and_go/test_001_sub04_임종찬
+[2025-09-24 19:20:45] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:45] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:45] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:45] Created metadata: data/motion_sickness/2024-08-19_stop_and_go/test_001_sub04_임종찬/metadata.json
+[2025-09-24 19:20:45] Created directory: data/motion_sickness/2024-08-27_stop_and_go/test_001_sub07_조은영
+[2025-09-24 19:20:45] Copied: realsense_resampled_100Hz_Rot.csv -> imu_realsense_001.csv
+[2025-09-24 19:20:45] Copied: HeadR_resampled_100Hz_LH.csv -> imu_headrest_002.csv
+[2025-09-24 19:20:45] Copied: CentC_resampled_100Hz_LH.csv -> imu_console_003.csv
+[2025-09-24 19:20:45] Created metadata: data/motion_sickness/2024-08-27_stop_and_go/test_001_sub07_조은영/metadata.json
+[2025-09-24 19:20:45] Validating migration...
+[2025-09-24 19:20:45] Warning: File size mismatch: data/motion_sickness/2024-08-26_single_lane_change/test_002_sub08_장성준/imu_realsense_001.csv
+[2025-09-24 19:20:45] Warning: File size mismatch: data/motion_sickness/2024-08-26_single_lane_change/test_002_sub08_장성준/imu_headrest_002.csv
+[2025-09-24 19:20:45] Warning: File size mismatch: data/motion_sickness/2024-08-26_single_lane_change/test_002_sub08_장성준/imu_console_003.csv
+[2025-09-24 19:20:45] Migration validation successful!

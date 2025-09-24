@@ -83,24 +83,25 @@ can_obd_001.csv           # CAN bus OBD data
 - **Examples**: 
   - `2024-06-30_single_lane_change`
   - `2024-06-30_stop_and_go` (same day, different scenario)
-  - `2024-07-01_highway_driving`
+  - `2024-06-30_long_wave`
 
 **Note**: If multiple scenarios are conducted on the same day, each scenario gets its own folder:
 - `2024-06-30_single_lane_change`
 - `2024-06-30_stop_and_go`
-- `2024-06-30_highway_driving`
+- `2024-06-30_long_wave`
 
 ### Test Session Folder
 ```
-{test_id}_{subject}
+{test_id}_{subject_number}_{subject_name}
 ```
-- **Format**: `test_{sequence}_{subject_name}`
+- **Format**: `test_{sequence}_sub{subject_number}_{subject_name}`
 - **Test ID**: Zero-padded 3-digit number
-- **Subject**: Full name (Korean or English)
+- **Subject Number**: Zero-padded 2-digit number with "sub" prefix
+- **Subject Name**: Full name (Korean or English)
 - **Examples**:
-  - `test_001_정현용`
-  - `test_002_최지웅`
-  - `test_001_John_Doe`
+  - `test_001_sub01_정현용`
+  - `test_002_sub02_최지웅`
+  - `test_001_sub03_John_Doe`
 
 ## Metadata File Structure
 
@@ -116,7 +117,7 @@ Each test session folder must contain a `metadata.json` file with the following 
     "description": "Single lane change maneuver for motion sickness study"
   },
   "test": {
-    "id": "test_001_정현용",
+    "id": "test_001_sub01_정현용",
     "sequence": 1,
     "subject": "정현용",
     "subject_id": "S001",
@@ -156,19 +157,19 @@ Each test session folder must contain a `metadata.json` file with the following 
 data/
 └── motion_sickness/
     ├── 2024-06-30_single_lane_change/
-    │   ├── test_001_정현용/
+    │   ├── test_001_sub01_정현용/
     │   │   ├── metadata.json
     │   │   ├── imu_console_001.csv
     │   │   └── imu_passenger_rear_002.csv
-    │   └── test_002_최지웅/
+    │   └── test_002_sub02_최지웅/
     │       ├── metadata.json
     │       └── imu_console_001.csv
     ├── 2024-06-30_stop_and_go/
-    │   └── test_001_정현용/
+    │   └── test_001_sub01_정현용/
     │       ├── metadata.json
     │       └── imu_console_001.csv
     └── 2024-07-01_highway_driving/
-        └── test_001_김철수/
+        └── test_001_sub03_김철수/
             ├── metadata.json
             └── imu_dashboard_001.csv
 ```
@@ -205,7 +206,7 @@ data/experiment_pilot/Day1/0630_test2_Single Lane Change_정현용/IMU_01.csv
 
 ### New Format
 ```
-data/motion_sickness/2024-06-30_single_lane_change/test_002_정현용/imu_console_001.csv
+data/motion_sickness/2024-06-30_single_lane_change/test_002_sub01_정현용/imu_console_001.csv
 ```
 
 ### Migration Mapping
@@ -213,7 +214,7 @@ data/motion_sickness/2024-06-30_single_lane_change/test_002_정현용/imu_consol
 |------------------|---------------|---------|
 | `experiment_pilot` | `motion_sickness` | Project name |
 | `Day1` | `2024-06-30` | Date extraction |
-| `0630_test2_Single Lane Change_정현용` | `test_002_정현용` | Test ID + subject |
+| `0630_test2_Single Lane Change_정현용` | `test_002_sub01_정현용` | Test ID + subject number + subject name |
 | `IMU_01.csv` | `imu_console_001.csv` | Self-describing name |
 
 ## Validation Rules
@@ -228,7 +229,7 @@ data/motion_sickness/2024-06-30_single_lane_change/test_002_정현용/imu_consol
 ### Directory Naming Validation
 1. Project name: lowercase with underscores only
 2. Experiment folder: `YYYY-MM-DD_scenario_name` format
-3. Test folder: `test_{sequence}_{subject}` format
+3. Test folder: `test_{sequence}_sub{subject_number}_{subject_name}` format
 4. No special characters or spaces
 
 ## Benefits
