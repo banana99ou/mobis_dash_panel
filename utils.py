@@ -48,6 +48,7 @@ def load_multiple_sensor_data(sensor_paths: List[str]) -> Dict[str, pd.DataFrame
     
     for path in sensor_paths:
         if os.path.exists(path):
+            # Extract sensor ID from filename (e.g., imu_console_001.csv -> imu_console_001)
             sensor_id = os.path.basename(path).replace('.csv', '')
             df = load_imu_data(path)
             if not df.empty:
@@ -194,7 +195,7 @@ def get_experiment_options() -> List[Dict]:
     """Dash 드롭다운용 실험 옵션 생성"""
     experiments = get_experiment_data()
     return [
-        {'label': f"{exp['date']} - {exp['scenario']}", 'value': exp['id']}
+        {'label': f"{exp.get('project', 'Unknown')} - {exp['date']} - {exp['scenario']}", 'value': exp['id']}
         for exp in experiments
     ]
 
@@ -202,7 +203,7 @@ def get_test_options(experiment_id: int) -> List[Dict]:
     """Dash 드롭다운용 테스트 옵션 생성"""
     tests = get_test_data(experiment_id)
     return [
-        {'label': f"{test['test_name']} (센서: {test['imu_count']}개)", 'value': test['id']}
+        {'label': f"{test.get('test_id', test['test_name'])} - {test.get('subject', 'Unknown')} ({test['imu_count']}개 센서, {test.get('duration_sec', 0):.1f}초)", 'value': test['id']}
         for test in tests
     ]
 
@@ -210,6 +211,6 @@ def get_sensor_options(test_id: int) -> List[Dict]:
     """Dash 드롭다운용 센서 옵션 생성"""
     sensors = get_sensor_data(test_id)
     return [
-        {'label': f"{sensor['sensor_id']} ({sensor['position']})", 'value': sensor['id']}
+        {'label': f"{sensor['sensor_id']} ({sensor.get('sensor_type', 'unknown')} - {sensor['position']}, {sensor.get('sample_rate_hz', 0):.1f}Hz)", 'value': sensor['id']}
         for sensor in sensors
     ]

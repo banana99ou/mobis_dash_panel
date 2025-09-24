@@ -36,13 +36,15 @@ def api_search_tests():
         sensor_id = request.args.get('sensor_id')
         scenario = request.args.get('scenario')
         date = request.args.get('date')
+        project = request.args.get('project')
         
         # 데이터베이스에서 검색
         results = db.search_tests(
             subject=subject,
             sensor_id=sensor_id,
             scenario=scenario,
-            date=date
+            date=date,
+            project=project
         )
         
         return jsonify({
@@ -471,13 +473,19 @@ def update_info_panel(experiment_id, test_id):
         experiments = utils.get_experiment_data()
         experiment = next((exp for exp in experiments if exp['id'] == experiment_id), None)
         if experiment:
+            info_parts.append(html.P(f"📁 프로젝트: {experiment.get('project', 'Unknown')}"))
             info_parts.append(html.P(f"📅 실험 날짜: {experiment['date']}"))
             info_parts.append(html.P(f"🎯 시나리오: {experiment['scenario']}"))
+            if experiment.get('description'):
+                info_parts.append(html.P(f"📝 설명: {experiment['description']}"))
     if test_id:
         test_details = db.get_test_details(test_id)
         if test_details:
-            info_parts.append(html.P(f"🧪 테스트: {test_details['test_name']}"))
+            info_parts.append(html.P(f"🧪 테스트: {test_details.get('test_id', test_details['test_name'])}"))
+            info_parts.append(html.P(f"👤 피험자: {test_details.get('subject', 'Unknown')}"))
             info_parts.append(html.P(f"📊 센서 개수: {test_details['imu_count']}개"))
+            if test_details.get('duration_sec'):
+                info_parts.append(html.P(f"⏱️ 지속시간: {test_details['duration_sec']:.1f}초"))
     return html.Div(info_parts)
 
 # 콜백: 데이터 로드 및 그래프/요약 업데이트

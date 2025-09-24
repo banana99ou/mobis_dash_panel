@@ -39,7 +39,7 @@ class APITester:
                 data = response.json()
                 print(f"✅ Found {data['count']} tests")
                 for test in data['data']:
-                    print(f"   - Test {test['id']}: {test['test_name']} ({test['subject']}) - {test['scenario']}")
+                    print(f"   - Test {test['id']}: {test.get('test_id', test['test_name'])} ({test.get('subject', 'Unknown')}) - {test.get('project', 'Unknown')} - {test['scenario']}")
                 return data['data']
             else:
                 print(f"❌ Search failed: {response.status_code}")
@@ -58,7 +58,7 @@ class APITester:
                 data = response.json()
                 print(f"✅ Found {data['count']} tests for subject '{subject}'")
                 for test in data['data']:
-                    print(f"   - Test {test['id']}: {test['test_name']} ({test['subject']})")
+                    print(f"   - Test {test['id']}: {test.get('test_id', test['test_name'])} ({test.get('subject', 'Unknown')})")
                 return data['data']
             else:
                 print(f"❌ Subject search failed: {response.status_code}")
@@ -77,7 +77,7 @@ class APITester:
                 data = response.json()
                 print(f"✅ Found {data['count']} tests with sensor '{sensor_id}'")
                 for test in data['data']:
-                    print(f"   - Test {test['id']}: {test['test_name']} ({test['subject']})")
+                    print(f"   - Test {test['id']}: {test.get('test_id', test['test_name'])} ({test.get('subject', 'Unknown')})")
                 return data['data']
             else:
                 print(f"❌ Sensor search failed: {response.status_code}")
@@ -96,7 +96,7 @@ class APITester:
                 data = response.json()
                 print(f"✅ Found {data['count']} tests for scenario '{scenario}'")
                 for test in data['data']:
-                    print(f"   - Test {test['id']}: {test['test_name']} ({test['subject']})")
+                    print(f"   - Test {test['id']}: {test.get('test_id', test['test_name'])} ({test.get('subject', 'Unknown')})")
                 return data['data']
             else:
                 print(f"❌ Scenario search failed: {response.status_code}")
@@ -115,7 +115,7 @@ class APITester:
                 data = response.json()
                 print(f"✅ Found {data['count']} tests for combined search")
                 for test in data['data']:
-                    print(f"   - Test {test['id']}: {test['test_name']} ({test['subject']}) - {test['scenario']}")
+                    print(f"   - Test {test['id']}: {test.get('test_id', test['test_name'])} ({test.get('subject', 'Unknown')}) - {test.get('project', 'Unknown')} - {test['scenario']}")
                 return data['data']
             else:
                 print(f"❌ Combined search failed: {response.status_code}")
@@ -132,12 +132,15 @@ class APITester:
             if response.status_code == 200:
                 data = response.json()
                 print(f"✅ Retrieved paths for test {test_id}")
-                print(f"   - Test: {data['data']['test_name']}")
+                print(f"   - Test: {data['data'].get('test_id', data['data']['test_name'])}")
+                print(f"   - Subject: {data['data'].get('subject', 'Unknown')}")
+                print(f"   - Project: {data['data'].get('project', 'Unknown')}")
+                print(f"   - Duration: {data['data'].get('duration_sec', 0):.1f}초")
                 print(f"   - Experiment path: {data['data']['experiment_path']}")
                 print(f"   - Metadata path: {data['data']['metadata_path']}")
                 print(f"   - Sensor files: {len(data['data']['sensor_files'])}")
                 for sensor in data['data']['sensor_files']:
-                    print(f"     * {sensor['sensor_id']} ({sensor['position']}): {sensor['file_path']}")
+                    print(f"     * {sensor['sensor_id']} ({sensor.get('sensor_type', 'unknown')} - {sensor['position']}, {sensor.get('sample_rate_hz', 0):.1f}Hz): {sensor['file_path']}")
                 return data['data']
             elif response.status_code == 404:
                 print(f"❌ Test {test_id} not found")
@@ -158,7 +161,7 @@ class APITester:
                 data = response.json()
                 print(f"✅ Retrieved {data['count']} sensors for test {test_id}")
                 for sensor in data['data']:
-                    print(f"   - {sensor['sensor_id']} ({sensor['position']}): {sensor['file_name']}")
+                    print(f"   - {sensor['sensor_id']} ({sensor.get('sensor_type', 'unknown')} - {sensor['position']}, {sensor.get('sample_rate_hz', 0):.1f}Hz): {sensor['file_name']}")
                 return data['data']
             elif response.status_code == 404:
                 print(f"❌ Test {test_id} not found")
@@ -199,7 +202,7 @@ class APITester:
                 self.test_search_by_scenario(scenario)
             
             # Test sensor search
-            self.test_search_by_sensor('IMU_01')
+            self.test_search_by_sensor('imu_console_001')
             
             # Test combined search
             if subject and scenario:
