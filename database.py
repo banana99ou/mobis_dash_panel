@@ -495,7 +495,7 @@ class IMUDatabase:
                 return dict(zip(columns, result))
             return None
 
-    def search_tests(self, subject: str = None, sensor_id: str = None, 
+    def search_tests(self, subject: str = None, subject_id: str = None, sensor_id: str = None, 
                     scenario: str = None, date: str = None, project: str = None) -> List[Dict]:
         """테스트 검색 (OR 조건으로 필터링)"""
         with sqlite3.connect(self.db_path) as conn:
@@ -517,6 +517,9 @@ class IMUDatabase:
             if subject:
                 conditions.append('t.subject LIKE ?')
                 params.append(f'%{subject}%')
+            if subject_id:
+                conditions.append('t.subject_id LIKE ?')
+                params.append(f'%{subject_id}%')
             if sensor_id:
                 conditions.append('s.sensor_id LIKE ?')
                 params.append(f'%{sensor_id}%')
@@ -531,7 +534,7 @@ class IMUDatabase:
                 params.append(f'%{project}%')
             
             if conditions:
-                query += ' AND (' + ' OR '.join(conditions) + ')'
+                query += ' AND ' + ' AND '.join(conditions)
             
             query += ' ORDER BY e.date DESC, t.sequence, t.test_name'
             

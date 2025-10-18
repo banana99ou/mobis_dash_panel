@@ -25,6 +25,8 @@ def start_data_watcher():
 start_data_watcher()
 
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
+app.server.config['JSON_AS_ASCII'] = False
+app.server.json.ensure_ascii = False
 
 # Flask API routes
 @app.server.route('/api/search/tests', methods=['GET'])
@@ -33,6 +35,7 @@ def api_search_tests():
     try:
         # 쿼리 파라미터 추출
         subject = request.args.get('subject')
+        subject_id = request.args.get('subject_id')
         sensor_id = request.args.get('sensor_id')
         scenario = request.args.get('scenario')
         date = request.args.get('date')
@@ -41,6 +44,7 @@ def api_search_tests():
         # 데이터베이스에서 검색
         results = db.search_tests(
             subject=subject,
+            subject_id=subject_id,
             sensor_id=sensor_id,
             scenario=scenario,
             date=date,
@@ -114,6 +118,20 @@ def api_health():
         'message': 'API is running',
         'version': '1.0.0'
     })
+
+@app.server.route('/api/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def api_catch_all(path):
+    """API 경로가 존재하지 않을 때 404 에러 반환"""
+    return jsonify({
+        'status': 'error',
+        'message': f'API endpoint /api/{path} not found',
+        'available_endpoints': [
+            '/api/search/tests',
+            '/api/tests/<id>/paths',
+            '/api/tests/<id>/sensors',
+            '/api/health'
+        ]
+    }), 404
 
 # 비밀번호 설정 (실제 운영환경에서는 환경변수나 설정 파일에서 관리하는 것을 권장)
 PASSWORD = "mobis1234"
