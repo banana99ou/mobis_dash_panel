@@ -6,9 +6,14 @@ from database import db, IMUDatabase
 import utils
 import subprocess
 import sys
-from flask import Flask, jsonify, request
+import os
+from flask import Flask, jsonify, request, send_from_directory, abort
 
+# 테스트/실험 데이터 인덱싱 (최적화 테이블은 건드리지 않음)
 db.scan_and_index_data()
+
+# 최적화 데이터 인덱싱 (기존 데이터는 유지하고 새 파일만 추가)
+db.scan_and_index_optimization_data(reset_first=False)
 
 # 파일 감시 프로세스 실행 (중복 실행 방지)
 def start_data_watcher():
@@ -119,6 +124,161 @@ def api_health():
         'version': '1.0.0'
     })
 
+@app.server.route('/api/optimization/parameters', methods=['GET'])
+def api_search_optimization_parameters():
+    """최적화 파라미터 검색 API"""
+    try:
+        # 쿼리 파라미터 추출
+        subject_id = request.args.get('subject_id')
+        subject = request.args.get('subject')  # subject name
+        scenario = request.args.get('scenario')
+        sensor = request.args.get('sensor')  # sensor_setting_code
+        strategy = request.args.get('strategy')  # strategy_number (int)
+        model = request.args.get('model')  # model_name
+        parameter_type = request.args.get('parameter_type')  # 'fullopt' or '3opt'
+        data_type = request.args.get('data_type')  # '주행' or '주행+휴식'
+        
+        # strategy를 int로 변환 (제공된 경우)
+        strategy_number = None
+        if strategy is not None:
+            try:
+                strategy_number = int(strategy)
+            except ValueError:
+                return jsonify({
+                    'status': 'error',
+                    'message': f'Invalid strategy number: {strategy}. Must be 0-4.'
+                }), 400
+        
+        # 데이터베이스에서 검색
+        results = db.search_optimization_parameters(
+            subject_id=subject_id,
+            subject=subject,
+            scenario=scenario,
+            sensor_setting_code=sensor,
+            strategy_number=strategy_number,
+            model_name=model,
+            parameter_type=parameter_type,
+            data_type=data_type
+        )
+        
+        # 시각화 파일에 대한 웹 URL 생성
+        workspace_root = os.path.abspath(os.path.dirname(__file__))
+        for param in results:
+            for viz in param['visualizations']:
+                # 파일 경로를 웹 URL로 변환
+                file_path = viz['file_path']
+                # 경로 정규화
+                file_path_norm = os.path.normpath(file_path)
+                workspace_root_norm = os.path.normpath(workspace_root)
+                
+                # 절대 경로인 경우 워크스페이스 루트 기준으로 상대 경로 생성
+                if os.path.isabs(file_path_norm):
+                    if file_path_norm.startswith(workspace_root_norm):
+                        relative_path = os.path.relpath(file_path_norm, workspace_root_norm)
+                        # 경로 구분자를 URL 슬래시로 변환
+                        relative_path = relative_path.replace(os.sep, '/')
+                        viz['url'] = f'/api/optimization/files/{relative_path}'
+                    else:
+                        # 워크스페이스 밖의 경로는 처리하지 않음
+                        viz['url'] = None
+                else:
+                    # 상대 경로인 경우 그대로 사용 (경로 구분자 정규화)
+                    relative_path = file_path_norm.replace(os.sep, '/')
+                    viz['url'] = f'/api/optimization/files/{relative_path}'
+        
+        return jsonify({
+            'status': 'success',
+            'count': len(results),
+            'data': results
+        })
+    
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
+@app.server.route('/api/optimization/parameters/<int:parameter_id>', methods=['GET'])
+def api_get_optimization_parameter_detail(parameter_id):
+    """최적화 파라미터 상세 정보 조회 API"""
+    try:
+        result = db.get_optimization_parameter_detail(parameter_id)
+        
+        if result is None:
+            return jsonify({
+                'status': 'error',
+                'message': f'Parameter with ID {parameter_id} not found'
+            }), 404
+        
+        # 시각화 파일에 대한 웹 URL 생성
+        workspace_root = os.path.abspath(os.path.dirname(__file__))
+        for viz in result['visualizations']:
+            file_path = viz['file_path']
+            # 경로 정규화
+            file_path_norm = os.path.normpath(file_path)
+            workspace_root_norm = os.path.normpath(workspace_root)
+            
+            # 절대 경로인 경우 워크스페이스 루트 기준으로 상대 경로 생성
+            if os.path.isabs(file_path_norm):
+                if file_path_norm.startswith(workspace_root_norm):
+                    relative_path = os.path.relpath(file_path_norm, workspace_root_norm)
+                    # 경로 구분자를 URL 슬래시로 변환
+                    relative_path = relative_path.replace(os.sep, '/')
+                    viz['url'] = f'/api/optimization/files/{relative_path}'
+                else:
+                    # 워크스페이스 밖의 경로는 처리하지 않음
+                    viz['url'] = None
+            else:
+                # 상대 경로인 경우 그대로 사용 (경로 구분자 정규화)
+                relative_path = file_path_norm.replace(os.sep, '/')
+                viz['url'] = f'/api/optimization/files/{relative_path}'
+        
+        return jsonify({
+            'status': 'success',
+            'data': result
+        })
+    
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
+@app.server.route('/api/optimization/files/<path:file_path>', methods=['GET'])
+def api_serve_optimization_file(file_path):
+    """최적화 파일 (PNG, MAT 등) 서빙"""
+    try:
+        workspace_root = os.path.abspath(os.path.dirname(__file__))
+        
+        # file_path가 이미 절대 경로인 경우 처리
+        if os.path.isabs(file_path):
+            # 절대 경로인 경우, 워크스페이스 루트 기준으로 정규화
+            full_path = os.path.normpath(file_path)
+        else:
+            # 상대 경로인 경우 워크스페이스 루트 기준으로 조인
+            full_path = os.path.normpath(os.path.join(workspace_root, file_path))
+        
+        # 보안: 워크스페이스 루트 밖으로 접근 방지
+        workspace_root_norm = os.path.normpath(workspace_root)
+        if not full_path.startswith(workspace_root_norm):
+            abort(403)
+        
+        # 파일 존재 확인
+        if not os.path.exists(full_path) or not os.path.isfile(full_path):
+            abort(404)
+        
+        # 디렉토리와 파일명 분리
+        directory = os.path.dirname(full_path)
+        filename = os.path.basename(full_path)
+        
+        return send_from_directory(directory, filename)
+    
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
 @app.server.route('/api/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def api_catch_all(path):
     """API 경로가 존재하지 않을 때 404 에러 반환"""
@@ -129,7 +289,10 @@ def api_catch_all(path):
             '/api/search/tests',
             '/api/tests/<id>/paths',
             '/api/tests/<id>/sensors',
-            '/api/health'
+            '/api/health',
+            '/api/optimization/parameters',
+            '/api/optimization/parameters/<id>',
+            '/api/optimization/files/<path>'
         ]
     }), 404
 

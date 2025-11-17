@@ -4,3 +4,13 @@ __pycache__
 .DS_Store
 data_backup*/
 data/데이터베이스
+
+# Sync conflict files
+*.sync-conflict-*
+
+# Database backup files
+*_backup_*.db
+*.db.cp
+
+# Ingest zip files (uncomment if not needed for deployment)
+# data/ingest/*.zip
