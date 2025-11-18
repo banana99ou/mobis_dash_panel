@@ -4,6 +4,7 @@ __pycache__
 .DS_Store
 data_backup*/
 data/데이터베이스
+imu_data.db
 
 # Sync conflict files
 *.sync-conflict-*
