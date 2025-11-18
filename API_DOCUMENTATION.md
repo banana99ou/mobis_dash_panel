@@ -217,64 +217,69 @@ curl "http://localhost:8050/api/tests/1/sensors"
 ```json
 {
   "status": "success",
-  "count": 2,
+  "count": 36,
   "data": [
     {
-      "id": 1,
+      "id": 41,
       "strategy_id": 1,
       "parameter_type": "fullopt",
       "data_type": "주행",
-      "file_path": "/path/to/data/데이터베이스/전략별최적화파라미터(주행)/Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.m",
-      "file_name": "Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.m",
-      "created_at": "2024-08-11 10:30:00",
-      "updated_at": "2024-08-11 10:30:00",
+      "file_path": "data/motion_sickness/optimization/Driving/Parameter/Strategy0_BySubjectScenarioSensor/slc_sub09/H-IMU_N-VV/slc_sub09_H-IMU_N-VV_parameters_fullopt.m",
+      "file_name": "slc_sub09_H-IMU_N-VV_parameters_fullopt.m",
+      "created_at": "2025-11-17 18:29:54",
+      "updated_at": "2025-11-18 02:05:56",
       "strategy": {
         "number": 0,
-        "name": "Subject + Scenario + Sensor Specific",
-        "description": "Strategy for specific subject, scenario, and sensor combination"
+        "name": "BySubjectScenarioSensor",
+        "description": "피험자별 + 시나리오별 + 센서 세팅별 최적화"
       },
-      "subjects": ["sub01"],
-      "scenarios": ["lw"],
+      "subjects": [
+        {
+          "id": "sub_009",
+          "name": "정예린"
+        }
+      ],
+      "scenarios": ["slc"],
       "sensor_settings": [
         {
           "code": "H-IMU_N-VV",
-          "description": "Horizontal IMU, Normal-Vertical configuration"
+          "description": "Head IMU, No VV"
         }
       ],
       "results": [
         {
-          "id": 1,
+          "id": 155,
           "model_name": "MSIbase",
-          "file_path": "/path/to/data/데이터베이스/전략별최적화결과(주행)/MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.mat",
-          "file_name": "MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.mat",
-          "created_at": "2024-08-11 10:35:00"
+          "file_path": "data/motion_sickness/optimization/Driving/Results/Strategy0_BySubjectScenarioSensor/slc_sub09/H-IMU_N-VV/MSIbase_fullopt.mat",
+          "file_name": "MSIbase_fullopt.mat",
+          "created_at": "2025-11-17 18:30:04"
         },
         {
-          "id": 2,
+          "id": 149,
           "model_name": "OmanAP",
-          "file_path": "/path/to/data/데이터베이스/전략별최적화결과(주행)/OmanAP_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.mat",
-          "file_name": "OmanAP_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.mat",
-          "created_at": "2024-08-11 10:35:00"
+          "file_path": "data/motion_sickness/optimization/Driving/Results/Strategy0_BySubjectScenarioSensor/slc_sub09/H-IMU_N-VV/OmanAP_fullopt.mat",
+          "file_name": "OmanAP_fullopt.mat",
+          "created_at": "2025-11-17 18:30:04"
         }
       ],
       "visualizations": [
         {
-          "id": 1,
+          "id": 187,
           "type": "model_specific",
           "model_name": "MSIbase",
-          "file_path": "/path/to/data/데이터베이스/전략별최적화그래프(주행)/model_specific_MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png",
-          "file_name": "model_specific_MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png",
-          "url": "/api/optimization/files/data/데이터베이스/전략별최적화그래프(주행)/model_specific_MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png",
-          "created_at": "2024-08-11 10:40:00"
+          "file_path": "data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_MSIbase_fullopt.png",
+          "file_name": "slc_sub09_MSIbase_fullopt.png",
+          "url": "/api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_MSIbase_fullopt.png",
+          "created_at": "2025-11-17 18:39:20"
         },
         {
-          "id": 2,
+          "id": 188,
           "type": "comparison",
           "model_name": null,
-          "file_path": "/path/to/data/데이터베이스/전략별최적화그래프(주행)/comparison_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png",
-          "file_name": "comparison_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png",
-          "url": "/api/optimization/files/data/데이터베이스/전략별최적화그래프(주행)/comparison_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png",
-          "created_at": "2024-08-11 10:40:00"
+          "file_path": "data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png",
+          "file_name": "slc_sub09_fullopt.png",
+          "url": "/api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png",
+          "created_at": "2025-11-17 18:39:20"
         }
       ]
     }
@@ -289,10 +294,10 @@ curl "http://localhost:8050/api/tests/1/sensors"
 curl "http://localhost:8050/api/optimization/parameters"
 
 # 피험자별 검색
-curl "http://localhost:8050/api/optimization/parameters?subject_id=sub01"
+curl "http://localhost:8050/api/optimization/parameters?subject_id=sub09"
 
 # 시나리오별 검색
-curl "http://localhost:8050/api/optimization/parameters?scenario=lw"
+curl "http://localhost:8050/api/optimization/parameters?scenario=slc"
 
 # 전략별 검색
 curl "http://localhost:8050/api/optimization/parameters?strategy=0"
@@ -310,7 +315,25 @@ curl "http://localhost:8050/api/optimization/parameters?parameter_type=fullopt"
 curl "http://localhost:8050/api/optimization/parameters?data_type=주행"
 
 # 복합 검색 (모든 조건 AND)
-curl "http://localhost:8050/api/optimization/parameters?subject_id=sub01&scenario=lw&strategy=0&parameter_type=fullopt"
+curl "http://localhost:8050/api/optimization/parameters?subject_id=sub09&scenario=slc&strategy=0&parameter_type=fullopt"
+```
+
+**시각화 이미지 URL 추출 및 브라우저에서 보기:**
+
+```bash
+# 1. 필터링하여 검색 (예: strategy=0, subject_id=sub09, scenario=slc)
+curl "http://localhost:8050/api/optimization/parameters?strategy=0&subject_id=sub09&scenario=slc" > response.json
+
+# 2. 응답에서 visualization URL 추출 (grep 사용)
+grep -o '"url": "[^"]*"' response.json
+
+# 또는 jq를 사용하여 더 깔끔하게 추출
+curl -s "http://localhost:8050/api/optimization/parameters?strategy=0&subject_id=sub09&scenario=slc" | \
+  jq -r '.data[].visualizations[].url' | grep -v null
+
+# 3. 추출된 URL을 브라우저에서 열기
+# 예시 URL: /api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png
+브라우저에서 접근: "http://localhost:8050/api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png"
 ```
 
 ### 6. 최적화 파라미터 상세 정보 조회 (Get Optimization Parameter Detail)
@@ -327,51 +350,59 @@ curl "http://localhost:8050/api/optimization/parameters?subject_id=sub01&scenari
 {
   "status": "success",
   "data": {
-    "id": 1,
+    "id": 41,
     "strategy_id": 1,
     "parameter_type": "fullopt",
     "data_type": "주행",
-    "file_path": "/path/to/data/데이터베이스/전략별최적화파라미터(주행)/Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.m",
-    "file_name": "Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.m",
-    "file_hash": "abc123def456...",
-    "metadata": "{\"version\": \"1.0\", \"notes\": \"...\"}",
-    "created_at": "2024-08-11 10:30:00",
-    "updated_at": "2024-08-11 10:30:00",
+    "file_path": "data/motion_sickness/optimization/Driving/Parameter/Strategy0_BySubjectScenarioSensor/slc_sub09/H-IMU_N-VV/slc_sub09_H-IMU_N-VV_parameters_fullopt.m",
+    "file_name": "slc_sub09_H-IMU_N-VV_parameters_fullopt.m",
+    "created_at": "2025-11-17 18:29:54",
+    "updated_at": "2025-11-18 02:05:56",
     "strategy": {
       "number": 0,
-      "name": "Subject + Scenario + Sensor Specific",
-      "description": "Strategy for specific subject, scenario, and sensor combination"
+      "name": "BySubjectScenarioSensor",
+      "description": "피험자별 + 시나리오별 + 센서 세팅별 최적화"
     },
-    "subjects": ["sub01"],
-    "scenarios": ["lw"],
+    "subjects": [
+      {
+        "id": "sub_009",
+        "name": "정예린"
+      }
+    ],
+    "scenarios": ["slc"],
     "sensor_settings": [
       {
-        "id": 1,
         "code": "H-IMU_N-VV",
-        "description": "Horizontal IMU, Normal-Vertical configuration",
-        "components": "H-IMU, V-IMU"
+        "description": "Head IMU, No VV"
       }
     ],
     "results": [
       {
-        "id": 1,
+        "id": 155,
         "model_name": "MSIbase",
-        "file_path": "/path/to/data/데이터베이스/전략별최적화결과(주행)/MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.mat",
-        "file_name": "MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.mat",
-        "file_hash": "xyz789...",
-        "metadata": "{\"RMSE\": 0.123, \"R2\": 0.987}",
-        "created_at": "2024-08-11 10:35:00"
+        "file_path": "data/motion_sickness/optimization/Driving/Results/Strategy0_BySubjectScenarioSensor/slc_sub09/H-IMU_N-VV/MSIbase_fullopt.mat",
+        "file_name": "MSIbase_fullopt.mat",
+        "created_at": "2025-11-17 18:30:04"
       }
     ],
     "visualizations": [
       {
-        "id": 1,
+        "id": 187,
         "type": "model_specific",
         "model_name": "MSIbase",
-        "file_path": "/path/to/data/데이터베이스/전략별최적화그래프(주행)/model_specific_MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png",
-        "file_name": "model_specific_MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png",
-        "url": "/api/optimization/files/data/데이터베이스/전략별최적화그래프(주행)/model_specific_MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png",
-        "created_at": "2024-08-11 10:40:00"
+        "file_path": "data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_MSIbase_fullopt.png",
+        "file_name": "slc_sub09_MSIbase_fullopt.png",
+        "url": "/api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_MSIbase_fullopt.png",
+        "created_at": "2025-11-17 18:39:20"
+      },
+      {
+        "id": 188,
+        "type": "comparison",
+        "model_name": null,
+        "file_path": "data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png",
+        "file_name": "slc_sub09_fullopt.png",
+        "url": "/api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png",
+        "created_at": "2025-11-17 18:39:20"
       }
     ]
   }
@@ -380,7 +411,12 @@ curl "http://localhost:8050/api/optimization/parameters?subject_id=sub01&scenari
 
 **사용 예시:**
 ```bash
-curl "http://localhost:8050/api/optimization/parameters/1"
+# 파라미터 ID로 상세 정보 조회
+curl "http://localhost:8050/api/optimization/parameters/41"
+
+# 응답에서 visualization URL 추출
+curl -s "http://localhost:8050/api/optimization/parameters/41" | \
+  jq -r '.data.visualizations[].url' | grep -v null
 ```
 
 ### 7. 최적화 파일 서빙 (Serve Optimization Files)
@@ -396,21 +432,64 @@ curl "http://localhost:8050/api/optimization/parameters/1"
 파일 바이너리 데이터 (Content-Type은 파일 확장자에 따라 자동 결정)
 
 **사용 예시:**
+
+**방법 1: API 응답에서 URL 추출 후 브라우저에서 열기**
+
 ```bash
-# PNG 시각화 파일 조회
-curl "http://localhost:8050/api/optimization/files/data/데이터베이스/전략별최적화그래프(주행)/model_specific_MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.png" --output figure.png
+# 1. 필터링하여 검색하고 visualization URL 추출
+curl -s "http://localhost:8050/api/optimization/parameters?strategy=0&subject_id=sub09&scenario=slc" | \
+  jq -r '.data[].visualizations[].url' | grep -v null | head -1
 
-# MAT 결과 파일 조회
-curl "http://localhost:8050/api/optimization/files/data/데이터베이스/전략별최적화결과(주행)/MSIbase_Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.mat" --output result.mat
+# 출력 예시: /api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png
 
-# M 파라미터 파일 조회
-curl "http://localhost:8050/api/optimization/files/data/데이터베이스/전략별최적화파라미터(주행)/Strategy0_sub01_lw_H-IMU_N-VV_주행_fullopt.m" --output parameter.m
+# 2. 브라우저에서 열기 (Base URL 추가)
+# http://localhost:8050/api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png
+```
+
+**방법 2: curl로 파일 다운로드**
+
+```bash
+# PNG 시각화 파일 다운로드
+curl "http://localhost:8050/api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png" --output figure.png
+
+# MAT 결과 파일 다운로드
+curl "http://localhost:8050/api/optimization/files/data/motion_sickness/optimization/Driving/Results/Strategy0_BySubjectScenarioSensor/slc_sub09/H-IMU_N-VV/MSIbase_fullopt.mat" --output result.mat
+
+# M 파라미터 파일 다운로드
+curl "http://localhost:8050/api/optimization/files/data/motion_sickness/optimization/Driving/Parameter/Strategy0_BySubjectScenarioSensor/slc_sub09/H-IMU_N-VV/slc_sub09_H-IMU_N-VV_parameters_fullopt.m" --output parameter.m
+```
+
+**방법 3: 브라우저에서 직접 이미지 보기**
+
+API 응답에서 얻은 `url` 필드를 사용하여 브라우저 주소창에 입력:
+
+```
+http://localhost:8050/api/optimization/files/data/motion_sickness/optimization/Driving/Graph/Strategy0_BySubjectScenarioSensor/slc_sub09/slc_sub09_fullopt.png
+```
+
+**완전한 워크플로우 예시:**
+
+```bash
+# Step 1: 필터링하여 검색
+curl -s "http://localhost:8050/api/optimization/parameters?strategy=0&subject_id=sub09&scenario=slc" > response.json
+
+# Step 2: visualization URL 추출 (grep 사용)
+grep -o '"url": "[^"]*"' response.json | grep -v null
+
+# Step 3: URL을 변수에 저장하고 브라우저에서 열기 (macOS)
+URL=$(curl -s "http://localhost:8050/api/optimization/parameters?strategy=0&subject_id=sub09&scenario=slc" | \
+  jq -r '.data[].visualizations[].url' | grep -v null | head -1)
+open "http://localhost:8050${URL}"
+
+# 또는 Linux의 경우
+# xdg-open "http://localhost:8050${URL}"
 ```
 
 **참고:**
 - 시각화 파일의 `url` 필드는 이 엔드포인트를 가리킵니다
 - 파일 경로는 워크스페이스 루트 기준 상대 경로여야 합니다
 - 워크스페이스 밖의 파일은 접근할 수 없습니다 (보안)
+- **중요**: API 응답에서 얻은 `url` 필드를 그대로 사용하세요. 문서의 예시 경로는 참고용이며, 실제 경로는 API 응답을 확인해야 합니다
 
 ---
 
@@ -478,8 +557,8 @@ def get_optimization_parameter_detail(parameter_id):
     return response.json()
 
 # 최적화 파라미터 사용 예시
-# 1. Strategy 0 파라미터 검색
-params = search_optimization_parameters(strategy=0)
+# 1. Strategy 0 파라미터 검색 (필터링)
+params = search_optimization_parameters(strategy=0, subject_id="sub09", scenario="slc")
 print(f"Found {params['count']} parameters")
 
 # 2. 첫 번째 파라미터의 상세 정보 및 시각화 URL 조회
@@ -488,8 +567,12 @@ if params['data']:
     detail = get_optimization_parameter_detail(param_id)
     print(f"Parameter file: {detail['data']['file_path']}")
     for viz in detail['data']['visualizations']:
-        if viz['url']:
-            print(f"Visualization URL: {BASE_URL}{viz['url']}")
+        if viz.get('url'):
+            full_url = f"{BASE_URL}{viz['url']}"
+            print(f"Visualization URL: {full_url}")
+            # 브라우저에서 열기 (선택사항)
+            # import webbrowser
+            # webbrowser.open(full_url)
 ```
 
 ### JavaScript를 사용한 API 호출
@@ -543,7 +626,7 @@ async function getOptimizationParameterDetail(parameterId) {
 }
 
 // 최적화 파라미터 사용 예시
-searchOptimizationParameters("sub01", "lw", 0)
+searchOptimizationParameters("sub09", "slc", 0)
     .then(data => {
         console.log(`Found ${data.count} parameters`);
         if (data.data.length > 0) {
@@ -555,7 +638,10 @@ searchOptimizationParameters("sub01", "lw", 0)
             console.log("Parameter detail:", detail.data);
             detail.data.visualizations.forEach(viz => {
                 if (viz.url) {
-                    console.log(`Visualization: http://localhost:8050${viz.url}`);
+                    const fullUrl = `http://localhost:8050${viz.url}`;
+                    console.log(`Visualization: ${fullUrl}`);
+                    // 브라우저에서 새 탭으로 열기 (선택사항)
+                    // window.open(fullUrl, '_blank');
                 }
             });
         }
